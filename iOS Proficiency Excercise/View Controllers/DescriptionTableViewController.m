@@ -167,7 +167,6 @@ float   const heightOfNavigationBar = 44.0f;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        //cell = [self.tableView dequeueReusableCellWithIdentifier:@"tableViewDataCell"];
         cell = [[DataCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"tableViewDataCell"];
     });
     
