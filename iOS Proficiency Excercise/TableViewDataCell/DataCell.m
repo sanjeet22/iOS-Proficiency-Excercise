@@ -59,6 +59,9 @@
     [self setImageViewConstraints];
 }
 
+
+#pragma mark set constraints of lable
+
 - (void)setTitleLableConstraints
 {
     [lableTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -82,6 +85,8 @@
                                                                                views:NSDictionaryOfVariableBindings(lableTitle, imageProfile)]];
 }
 
+
+
 - (void)setDescriptionLableConstraints
 {
     [lableDescription setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -94,6 +99,8 @@
     
 
 }
+
+#pragma mark set constraints of images 
 
 - (void)setImageViewConstraints
 {
