@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "DescriptionTableViewController.h"
+#import "Reachability.h"
 @interface AppDelegate ()
 
 @end
@@ -17,7 +18,45 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    
+    DescriptionTableViewController *descriptionTavleVC = [[DescriptionTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    self.navigationController = [[UINavigationController alloc]initWithRootViewController:descriptionTavleVC];
+    self.window.rootViewController = self.navigationController;
+
+    [self.window makeKeyAndVisible];
+    
+    NetworkStatus networkStatus =
+    [[Reachability reachabilityForInternetConnection]
+     currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+    
+      UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Network Unavailable"
+                                  message:@"Requires an Internet connection"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+      UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 //Do some thing here
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alert addAction:ok];
+        
+        
+    }
+    
+    
     return YES;
+   
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
