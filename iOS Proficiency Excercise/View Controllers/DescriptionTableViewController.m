@@ -138,6 +138,8 @@ float   const heightOfNavigationBar = 44.0f;
     
     cell.lableTitle.text = row.titleText;
     cell.lableDescription.text = row.descriptionText;
+    
+    // lazy loading
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:row.imageUrl] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             UIImage *image = [UIImage imageWithData:data];
