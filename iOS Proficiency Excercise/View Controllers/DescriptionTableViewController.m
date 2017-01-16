@@ -50,33 +50,35 @@ float   const heightOfNavigationBar = 44.0f;
 
 - (void)fetchData
 {
+    
+    NetworkStatus networkStatus =
+    [[Reachability reachabilityForInternetConnection]
+     currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Network Unavailable"
+                                      message:@"Requires an Internet connection"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 //Do some thing here
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else
+    {
     [NetworkEngine fetchDataWithCompletion:^(NSDictionary * _Nullable response, NSError * _Nullable error) {
         if (!response) {
            
-            NetworkStatus networkStatus =
-            [[Reachability reachabilityForInternetConnection]
-             currentReachabilityStatus];
-            if (networkStatus == NotReachable) {
-                
-                UIAlertController * alert=   [UIAlertController
-                                              alertControllerWithTitle:@"Network Unavailable"
-                                              message:@"Requires an Internet connection"
-                                              preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* ok = [UIAlertAction
-                                     actionWithTitle:@"OK"
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * action)
-                                     {
-                                         //Do some thing here
-                                         [alert dismissViewControllerAnimated:YES completion:nil];
-                                         
-                                     }];
-                [alert addAction:ok];
-                
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-
         }
         else {
             factData = [[Facts alloc] initWithDictionary:response];
@@ -94,6 +96,8 @@ float   const heightOfNavigationBar = 44.0f;
         }
     }];
 
+      }
+    
 }
 
 - (void)refreshTable {
