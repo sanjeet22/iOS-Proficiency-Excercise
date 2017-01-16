@@ -46,7 +46,7 @@ float   const heightOfNavigationBar = 44.0f;
     
 }
 
-# pragma arg fetching data 
+# pragma mark fetching data
 
 - (void)fetchData
 {
