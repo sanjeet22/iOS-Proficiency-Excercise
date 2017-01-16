@@ -30,30 +30,6 @@
 
     [self.window makeKeyAndVisible];
     
-    NetworkStatus networkStatus =
-    [[Reachability reachabilityForInternetConnection]
-     currentReachabilityStatus];
-    if (networkStatus == NotReachable) {
-    
-      UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Network Unavailable"
-                                  message:@"Requires an Internet connection"
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    
-      UIAlertAction* ok = [UIAlertAction
-                             actionWithTitle:@"OK"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 //Do some thing here
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                 
-                             }];
-        [alert addAction:ok];
-        
-        
-    }
-    
     
     return YES;
    

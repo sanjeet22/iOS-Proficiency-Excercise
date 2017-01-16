@@ -74,7 +74,7 @@ float   const heightOfNavigationBar = 44.0f;
                                      }];
                 [alert addAction:ok];
                 
-                
+                [self presentViewController:alert animated:YES completion:nil];
             }
 
         }
