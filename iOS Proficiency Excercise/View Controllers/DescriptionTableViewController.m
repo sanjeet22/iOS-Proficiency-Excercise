@@ -83,11 +83,10 @@ float   const heightOfNavigationBar = 44.0f;
         else {
             factData = [[Facts alloc] initWithDictionary:response];
             
-            self.title = factData.screenTitle;
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
+             dispatch_async(dispatch_get_main_queue(), ^{
                 // update the UI with your calculated results
                 
+                self.title = factData.screenTitle;
                 [self.tableView reloadData];
                 [spinner stopAnimating];
                 [spinner setHidden:YES];
